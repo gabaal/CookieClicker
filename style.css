@@ -1,33 +1,85 @@
 body {
-  text-align: center;
-  font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #a0b1c9;
+  font-family: "Arial", sans-serif;
 }
-#upgrades {
+
+#gameTitle {
+  font-size: 60px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.hidden-message {
+  display: none;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f44336;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.upgrades {
   display: flex;
   flex-direction: column;
+}
+.cookie-container {
   text-align: center;
-  text-justify: center;
 }
-#cookie {
+
+.cookie {
   width: 200px;
-  height: 200px;
-  margin: 20px;
   cursor: pointer;
+  transition: transform 0.2s ease-out;
 }
 
-#score {
+#cookieCount {
   font-size: 24px;
-  margin-top: 10px;
+  margin-top: 20px;
+  color: #333;
 }
 
-#clickRate {
-  font-size: 18px;
-  margin-top: 10px;
+#cpsDisplay {
+  font-size: 24px;
+  color: #333;
 }
 
-.upgrade-btn {
-  margin: 10px;
-  padding: 5px 10px;
+button {
+  padding: 10px;
+  margin: 5px;
   font-size: 16px;
   cursor: pointer;
+  background-color: #3d4e50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-out;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.cookie-clicked {
+  animation: bounce 0.3s ease-out;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
 }

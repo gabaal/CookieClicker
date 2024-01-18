@@ -1,77 +1,91 @@
-let score = parseInt(localStorage.getItem("cookieScore")) || 0;
-let clickRate = parseInt(localStorage.getItem("clickRate")) || 1;
-let upgradeCosts = [10, 20];
-let upgradeLevels = JSON.parse(localStorage.getItem("upgradeLevels")) || [0, 0];
+document.addEventListener("DOMContentLoaded", () => {
+  const cookie = document.getElementById("cookie");
+  const cookieCountDisplay = document.getElementById("cookieCount");
+  const cpsDisplay = document.getElementById("cpsDisplay");
+  const resetButton = document.getElementById("resetButton");
+  const upgrade1Button = document.getElementById("upgrade1");
+  const upgrade2Button = document.getElementById("upgrade2");
+  const upgrade3Button = document.getElementById("upgrade3");
 
-updateScore();
-updateClickRate();
+  let cookieCount = parseInt(localStorage.getItem("cookieCount")) || 0;
+  let cookiesPerSecond =
+    parseInt(localStorage.getItem("cookiesPerSecond")) || 1;
 
-function clickCookie() {
-  score += clickRate;
-  localStorage.setItem("cookieScore", score);
-  updateScore();
-}
+  let upgrade1Cost = 10;
+  let upgrade2Cost = 25;
+  let upgrade3Cost = 50;
 
-function updateScore() {
-  document.getElementById("score").textContent = "Cookies: " + score;
-}
+  cookieCountDisplay.textContent = `Cookies: ${cookieCount}`;
+  cpsDisplay.textContent = `CPS: ${cookiesPerSecond}`;
 
-function updateClickRate() {
-  document.getElementById("clickRate").textContent =
-    "Click Rate: " + clickRate + " per second";
-}
+  cookie.addEventListener("click", () => {
+    cookie.classList.add("cookie-clicked");
+    setTimeout(() => {
+      cookie.classList.remove("cookie-clicked");
+    }, 300);
+    cookieCount++;
+    updateCookieCount();
+  });
 
-function applyTemporaryUpgrade(upgradeIndex) {
-  switch (upgradeIndex) {
-    case 1:
-      // Double Click Rate for 10 seconds
-      const originalClickRate = clickRate;
-      clickRate *= 2;
-      updateClickRate();
-      setTimeout(() => {
-        clickRate = originalClickRate;
-        updateClickRate();
-      }, 10000); // Reset to original Click Rate after 10 seconds
-      break;
+  resetButton.addEventListener("click", () => {
+    cookieCount = 0;
+    cookiesPerSecond = 1;
+    updateCookieCount();
+  });
+
+  function showMessage(message) {
+    messageContainer.textContent = message;
+    messageContainer.style.display = "block";
+    setTimeout(() => {
+      messageContainer.style.display = "none";
+    }, 3000);
   }
-}
 
-setInterval(clickCookie, 1000);
-
-function buyUpgrade(upgradeIndex) {
-  const cost = upgradeCosts[upgradeIndex - 1];
-  if (score >= cost) {
-    score -= cost;
-    upgradeLevels[upgradeIndex - 1]++;
-    upgradeCosts[upgradeIndex - 1] *= 2;
-    localStorage.setItem("cookieScore", score);
-    localStorage.setItem("upgradeLevels", JSON.stringify(upgradeLevels));
-    updateScore();
-    alert("Upgrade purchased!");
-
-    // Apply upgrade effects
-    switch (upgradeIndex) {
-      case 1:
-        applyTemporaryUpgrade(1);
-        break;
-      case 2:
-        clickRate += 1;
-        updateClickRate();
-        break;
+  upgrade1Button.addEventListener("click", () => {
+    if (cookieCount >= upgrade1Cost) {
+      cookieCount -= upgrade1Cost;
+      cookiesPerSecond += 10;
+      upgrade1Cost *= 2;
+      updateCookieCount();
+    } else {
+      showMessage("Not enough cookies to purchase Grandma!");
     }
-  } else {
-    alert("Not enough cookies to buy this upgrade.");
-  }
-}
+  });
 
-function resetGame() {
-  score = 0;
-  clickRate = 1;
-  upgradeLevels = [0, 0];
-  localStorage.setItem("cookieScore", score);
-  localStorage.setItem("clickRate", clickRate);
-  localStorage.setItem("upgradeLevels", JSON.stringify(upgradeLevels));
-  updateScore();
-  updateClickRate();
-  alert("Game reset!");
-}
+  upgrade2Button.addEventListener("click", () => {
+    if (cookieCount >= upgrade2Cost) {
+      cookieCount -= upgrade2Cost;
+      cookiesPerSecond += 100;
+      upgrade2Cost *= 2;
+      updateCookieCount();
+    } else {
+      showMessage("Not enough cookies to purchase a oven!");
+    }
+  });
+
+  upgrade3Button.addEventListener("click", () => {
+    if (cookieCount >= upgrade3Cost) {
+      cookieCount -= upgrade3Cost;
+      cookiesPerSecond += 1000;
+      upgrade3Cost *= 2;
+      updateCookieCount();
+    } else {
+      showMessage("Not enough cookies to a factory!");
+    }
+  });
+
+  setInterval(() => {
+    cookieCount += cookiesPerSecond;
+    updateCookieCount();
+  }, 1000);
+
+  function updateCookieCount() {
+    cookieCountDisplay.textContent = `Cookies: ${cookieCount}`;
+    localStorage.setItem("cookieCount", cookieCount);
+    localStorage.setItem("cookiesPerSecond", cookiesPerSecond);
+    cpsDisplay.textContent = `CPS: ${cookiesPerSecond}`;
+    upgrade1Button.textContent = `Grandma + 10 CPS Cost: ${upgrade1Cost} cookies`;
+    upgrade2Button.textContent = `Oven + 100 CPS Cost: ${upgrade2Cost} cookies`;
+    upgrade3Button.textContent = `Factory + 1000 CPS Cost: ${upgrade3Cost} cookies`;
+  }
+});

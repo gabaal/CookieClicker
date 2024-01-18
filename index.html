@@ -5,9 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="style.css" />
     <script src="./app.js" defer></script>
-    <title>Document</title>
+    <title>Cookie Clicker</title>
   </head>
   <body>
     <h1>Cookie Clicker</h1>
+    <img id="cookie" src="cookie.png" alt="Cookie" onclick="clickCookie()" />
+    <div id="score">Cookies: 0</div>
+    <div id="clickRate">Click Rate: 1 per second</div>
+    <div id="upgrades">
+      <button class="upgrade-btn" onclick="buyUpgrade(1)">
+        Double Click Rate for 10 seconds, costs 10 cookies
+      </button>
+      <button class="upgrade-btn" onclick="buyUpgrade(2)">
+       Permanent +1 Click Rate, costs 20 cookies
+      </button>
+      <button class="upgrade-btn" onclick="resetGame()">Reset Game</button>
+    </div>
+    </div>
   </body>
 </html>

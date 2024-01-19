@@ -13,7 +13,7 @@ const messageContainer = document.getElementById("messageContainer");
 // Create variables
 let state = getStateFromLocalStorage(); //the game variables stored in local storage, used to save and retrieve game data
 
-//Set inital button content. Used this so i can update how many times the upgrade has been purchased
+//Set inital button content. Used this method so i can update how many times the upgrade has been purchased
 cookieCountDisplay.textContent = `Cookies: ${state.cookieCount}`;
 cpsDisplay.textContent = `CPS: ${state.cookiesPerSecond}`;
 

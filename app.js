@@ -9,6 +9,10 @@ const upgrade3Button = document.getElementById("upgrade3");
 let cookieCount = parseInt(localStorage.getItem("cookieCount")) || 0;
 let cookiesPerSecond = parseInt(localStorage.getItem("cookiesPerSecond")) || 1;
 
+//Store upgrades to local storage
+
+let upgrade2Count = parseInt(localStorage.getItem("upgrade2Count")) || 0;
+
 let upgrade1Cost = 10;
 let upgrade2Cost = 25;
 let upgrade3Cost = 50;

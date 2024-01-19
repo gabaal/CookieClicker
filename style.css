@@ -49,8 +49,9 @@ body {
 }
 
 button {
-  padding: 10px;
-  margin: 5px;
+  margin: 10px;
+  padding: 8px 16px;
+  align-items: center;
   font-size: 16px;
   cursor: pointer;
   background-color: #3d4e50;
@@ -76,4 +77,9 @@ button:hover {
   50% {
     transform: scale(1.2);
   }
+}
+
+.upgradeImage {
+  width: 20px;
+  margin-right: 10px;
 }

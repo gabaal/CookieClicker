@@ -34,17 +34,20 @@ cookie.addEventListener("click", () => {
 });
 
 resetButton.addEventListener("click", () => {
-  state = {
-    cookieCount: 0,
-    cookiesPerSecond: 1,
-    upgrade1Count: 0,
-    upgrade2Count: 0,
-    upgrade3Count: 0,
-    upgrade4Count: 0,
-    upgrade5Count: 0,
-  };
+  const isConfirm = confirm("Are you sure you want to reset the game?");
+  if (isConfirm) {
+    state = {
+      cookieCount: 0,
+      cookiesPerSecond: 1,
+      upgrade1Count: 0,
+      upgrade2Count: 0,
+      upgrade3Count: 0,
+      upgrade4Count: 0,
+      upgrade5Count: 0,
+    };
 
-  updateCookieCount();
+    updateCookieCount();
+  }
 });
 
 //Upgrade buttons functionality

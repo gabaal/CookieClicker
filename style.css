@@ -4,7 +4,7 @@ body {
   justify-content: center;
   height: 100vh;
   margin: 0;
-  background-color: #a0b1c9;
+  background-color: whitesmoke;
   font-family: "Arial", sans-serif;
 }
 
@@ -26,6 +26,7 @@ body {
   text-align: center;
   border: 5px solid #333;
   padding: 50px;
+  background-color: #a0b1c9;
 }
 
 .cookie {

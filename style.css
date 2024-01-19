@@ -29,6 +29,8 @@ body {
 }
 .cookie-container {
   text-align: center;
+  border: 5px solid #333;
+  padding: 50px;
 }
 
 .cookie {
@@ -38,13 +40,13 @@ body {
 }
 
 #cookieCount {
-  font-size: 24px;
+  font-size: 50px;
   margin-top: 20px;
   color: #333;
 }
 
 #cpsDisplay {
-  font-size: 24px;
+  font-size: 40px;
   color: #333;
 }
 
@@ -77,9 +79,4 @@ button:hover {
   50% {
     transform: scale(1.2);
   }
-}
-
-.upgradeImage {
-  width: 20px;
-  margin-right: 10px;
 }

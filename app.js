@@ -5,6 +5,8 @@ const resetButton = document.getElementById("resetButton");
 const upgrade1Button = document.getElementById("upgrade1");
 const upgrade2Button = document.getElementById("upgrade2");
 const upgrade3Button = document.getElementById("upgrade3");
+const upgrade4Button = document.getElementById("upgrade4");
+const upgrade5Button = document.getElementById("upgrade5");
 const messageContainer = document.getElementById("messageContainer");
 
 let cookieCount = parseInt(localStorage.getItem("cookieCount")) || 0;
@@ -13,10 +15,14 @@ let cookiesPerSecond = parseInt(localStorage.getItem("cookiesPerSecond")) || 0;
 let upgrade1Count = parseInt(localStorage.getItem("upgrade1Count")) || 0;
 let upgrade2Count = parseInt(localStorage.getItem("upgrade2Count")) || 0;
 let upgrade3Count = parseInt(localStorage.getItem("upgrade3Count")) || 0;
+let upgrade4Count = parseInt(localStorage.getItem("upgrade4Count")) || 0;
+let upgrade5Count = parseInt(localStorage.getItem("upgrade5Count")) || 0;
 
-let upgrade1Cost = 10;
-let upgrade2Cost = 100;
-let upgrade3Cost = 1000;
+let upgrade1Cost = 1;
+let upgrade2Cost = 10;
+let upgrade3Cost = 100;
+let upgrade4Cost = 1000;
+let upgrade5Cost = 10000;
 
 cookieCountDisplay.textContent = `Cookies: ${cookieCount}`;
 cpsDisplay.textContent = `CPS: ${cookiesPerSecond}`;
@@ -24,6 +30,8 @@ cpsDisplay.textContent = `CPS: ${cookiesPerSecond}`;
 upgrade1Button.textContent = `Grandma + 1 CPS. Cost: ${upgrade1Cost} cookies (${upgrade1Count} used)`;
 upgrade2Button.textContent = `Oven + 10 CPS Cost: ${upgrade2Cost} cookies (${upgrade2Count} used)`;
 upgrade3Button.textContent = `Factory + 100 CPS Cost: ${upgrade3Cost} cookies (${upgrade3Count} used)`;
+upgrade4Button.textContent = `Mine + 1000 CPS Cost: ${upgrade4Cost} cookies (${upgrade4Count} used)`;
+upgrade5Button.textContent = `Mine + 10000 CPS Cost: ${upgrade5Cost} cookies (${upgrade5Count} used)`;
 
 cookie.addEventListener("click", () => {
   cookie.classList.add("cookie-clicked");
@@ -81,6 +89,30 @@ upgrade3Button.addEventListener("click", () => {
   }
 });
 
+upgrade4Button.addEventListener("click", () => {
+  if (cookieCount >= upgrade4Cost) {
+    cookieCount -= upgrade4Cost;
+    cookiesPerSecond += 1000;
+    upgrade4Count++;
+    upgrade4Cost++;
+    updateCookieCount();
+  } else {
+    showMessage("Not enough cookies to purchase Upgrade 4!");
+  }
+});
+
+upgrade5Button.addEventListener("click", () => {
+  if (cookieCount >= upgrade5Cost) {
+    cookieCount -= upgrade5Cost;
+    cookiesPerSecond += 10000;
+    upgrade5Count++;
+    upgrade5Cost++;
+    updateCookieCount();
+  } else {
+    showMessage("Not enough cookies to purchase Upgrade 5!");
+  }
+});
+
 setInterval(() => {
   cookieCount += cookiesPerSecond;
   updateCookieCount();
@@ -88,17 +120,21 @@ setInterval(() => {
 
 function updateCookieCount() {
   cookieCountDisplay.textContent = `Cookies: ${cookieCount}`;
-  cpsDisplay.textContent = `CPS: ${cookiesPerSecond}`;
+  cpsDisplay.textContent = `Clicks per second: ${cookiesPerSecond}`;
   localStorage.setItem("cookieCount", cookieCount);
   localStorage.setItem("cookiesPerSecond", cookiesPerSecond);
 
   upgrade1Button.textContent = `Grandma + 1 CPS. Cost: ${upgrade1Cost} cookies (${upgrade1Count} used)`;
   upgrade2Button.textContent = `Oven + 10 CPS Cost: ${upgrade2Cost} cookies (${upgrade2Count} used)`;
   upgrade3Button.textContent = `Factory + 100 CPS Cost: ${upgrade3Cost} cookies (${upgrade3Count} used)`;
+  upgrade4Button.textContent = `Mine + 1000 CPS Cost: ${upgrade4Cost} cookies (${upgrade4Count} used)`;
+  upgrade5Button.textContent = `Bank + 10000 CPS Cost: ${upgrade5Cost} cookies (${upgrade5Count} used)`;
 
   localStorage.setItem("upgrade1Count", upgrade1Count);
   localStorage.setItem("upgrade2Count", upgrade2Count);
   localStorage.setItem("upgrade3Count", upgrade3Count);
+  localStorage.setItem("upgrade4Count", upgrade4Count);
+  localStorage.setItem("upgrade5Count", upgrade5Count);
 }
 
 function showMessage(message) {

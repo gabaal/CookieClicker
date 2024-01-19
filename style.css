@@ -8,12 +8,6 @@ body {
   font-family: "Arial", sans-serif;
 }
 
-#gameTitle {
-  font-size: 60px;
-  color: #333;
-  margin-bottom: 20px;
-}
-
 .hidden-message {
   display: none;
   margin-top: 10px;
@@ -26,6 +20,7 @@ body {
 .upgrades {
   display: flex;
   flex-direction: column;
+  border: 2px solid #333;
 }
 .cookie-container {
   text-align: center;
@@ -37,6 +32,10 @@ body {
   width: 200px;
   cursor: pointer;
   transition: transform 0.2s ease-out;
+}
+
+.cookie-clicked {
+  animation: scaleUpAndDown 0.075s ease-out;
 }
 
 #cookieCount {
@@ -67,10 +66,6 @@ button:hover {
   background-color: #45a049;
 }
 
-.cookie-clicked {
-  animation: scaleUpAndDown 0.075s ease-out;
-}
-
 @keyframes scaleUpAndDown {
   0%,
   100% {
@@ -79,4 +74,8 @@ button:hover {
   50% {
     transform: scale(1.2);
   }
+}
+.resetButton {
+  background-color: #f44336;
+  color: #333;
 }

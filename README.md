@@ -1,3 +1,5 @@
+Cookie clicker user story and cookie clicker wireframe within the github reppository.
+
 WOW this gave my brain a super workout! I really enjoyed it although a few parts where frustrating.
 
 Getting the buttons to show the number of upgrades purchased was difficult and although it works i think it is a work around rather than how it 'should' be done. I played around with .innerHTML, .innerText and .textContent but textContent seemed to work best.
